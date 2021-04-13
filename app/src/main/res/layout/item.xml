@@ -35,9 +35,9 @@
             android:text="TextView"
             android:textSize="18dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/description"
+            app:layout_constraintBottom_toTopOf="@id/description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -48,10 +48,10 @@
             android:layout_marginLeft="36dp"
             android:maxLines="2"
             android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/time"
+            app:layout_constraintBottom_toTopOf="@id/time"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/goodTitle" />
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintTop_toBottomOf="@id/goodTitle" />
 
         <ImageView
             android:id="@+id/time"
@@ -59,10 +59,10 @@
             android:layout_height="40dp"
             android:layout_marginBottom="35dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textTime"
+            app:layout_constraintEnd_toStartOf="@id/textTime"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/textTime"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintTop_toTopOf="@id/textTime"
             app:srcCompat="@drawable/ic_baseline_access_time_24"
             tools:ignore="VectorDrawableCompat" />
 
@@ -70,6 +70,7 @@
             android:id="@+id/textTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="46dp"
@@ -77,20 +78,21 @@
             android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/favourite"
+            app:layout_constraintEnd_toStartOf="@id/favourite"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/time"
-            app:layout_constraintTop_toTopOf="@+id/favourite" />
+            app:layout_constraintStart_toEndOf="@id/time"
+            app:layout_constraintTop_toTopOf="@id/favourite" />
 
         <ImageView
             android:id="@+id/favourite"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginBottom="28dp"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textTime"
+            app:layout_constraintStart_toEndOf="@id/textTime"
             app:srcCompat="@drawable/ic_baseline_favorite_border_24"
             tools:ignore="VectorDrawableCompat" />
     </androidx.constraintlayout.widget.ConstraintLayout>

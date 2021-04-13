@@ -13,6 +13,10 @@ public class Order {
         this.goodTextTime = goodTextTime;
     }
 
+    public Order() {
+
+    }
+
 
     public int getGoodImage() {
         return goodImage;
