@@ -17,7 +17,6 @@ public class Order {
 
     }
 
-
     public int getGoodImage() {
         return goodImage;
     }

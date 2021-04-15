@@ -1,7 +1,6 @@
 package com.example.mealrecipes;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
-import com.example.mealrecipes.Order;
-import com.example.mealrecipes.R;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.mealrecipes.R.drawable.ic_baseline_favorite_24;
 
 public class FavouriteAdapter extends ArrayAdapter<Order> {
     Context context;
@@ -32,6 +24,7 @@ public class FavouriteAdapter extends ArrayAdapter<Order> {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
+
     }
 
     @NonNull
@@ -53,16 +46,6 @@ public class FavouriteAdapter extends ArrayAdapter<Order> {
         ImageView tv_favorite = convertView.findViewById(R.id.favourite);
         cardView = convertView.findViewById(R.id.cardView);
 
-
-        tv_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tv_favorite.setImageResource(ic_baseline_favorite_24);
-                db.getFavourite().add(new Order(tv_image.getId(), tv_title.getText().toString(), tv_description.getText().toString(), tv_textTime.getText().toString()));
-                
-            }
-        });
-
         tv_image.setImageResource(goodImage);
         tv_title.setText(goodTitle);
         tv_description.setText(goodDescription);
@@ -70,6 +53,4 @@ public class FavouriteAdapter extends ArrayAdapter<Order> {
 
         return convertView;
     }
-
-
 }

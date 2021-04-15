@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     RecyclerView recyclerView;
     TextView textTime, description, goodTitle;
-    DB db = new DB();
     Menu menu;
 
     @Override
@@ -39,17 +38,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         menu = (Menu) findViewById(R.id.hard);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
+        DB.getOrders().add(new Order(R.drawable.food1, "The ultimate makeover: Fish & chips", "Angela Nilsen takes the British favourite and gives it a lighter, healthier, and modern twist", "65 min"));
+        DB.getOrders().add(new Order(R.drawable.food1, "The ultimate", "Angela Nilsen takes the British favourite and gives it a lighter, healthier, and modern twist", "130 min"));
+        DB.getOrders().add(new Order(R.drawable.food1, "The ultimate makeover: Fish", "Angela Nilsen takes the British favourite and gives it a lighter, healthier, and modern twist", "200 min"));
 
-
-        db.getOrders().add(new Order(R.drawable.food1, "The ultimate makeover: Fish & chips", "Angela Nilsen takes the British favourite and gives it a lighter, healthier, and modern twist", "65 min"));
-        db.getOrders().add(new Order(R.drawable.food1, "The ultimate", "Angela Nilsen takes the British favourite and gives it a lighter, healthier, and modern twist", "130 min"));
-        db.getOrders().add(new Order(R.drawable.food1, "The ultimate makeover: Fish", "Angela Nilsen takes the British favourite and gives it a lighter, healthier, and modern twist", "200 min"));
-
-        db.getOrder2s().add(new Order2(R.drawable.food1, "The ultimate makeover: Fish & chips", "123 min", "45 min", "123", "7", "Method\n" +
+        DB.getOrder2s().add(new Order2(R.drawable.food1, "The ultimate makeover: Fish & chips", "123 min", "45 min", "123", "7", "Method\n" +
                 "STEP 1\n" +
                 "Put a large saucepan on a medium heat and add 1 tbsp olive oil.\n" +
                 "\n" +
@@ -77,33 +72,30 @@ public class MainActivity extends AppCompatActivity {
                 "STEP 9\n" +
                 "Drain the spaghetti and either stir into the bolognese sauce, or serve the sauce on top. Serve with more grated parmesan, the remaining basil leaves and crusty bread, if you like."));
 
-
-        mealAdapter mealAdapter = new mealAdapter(db.getOrders());
+        mealAdapter mealAdapter = new mealAdapter(DB.getOrders());
         mealAdapter.setItemClickListener(new mealAdapter.ItemClickListener() {
             @Override
             public void ItemClick(int position) {
                 Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
                 startActivity(intent);
+            }
 
-
+            @Override
+            public void onDeleteClick(int position) {
             }
         });
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mealAdapter);
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
-
     }
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

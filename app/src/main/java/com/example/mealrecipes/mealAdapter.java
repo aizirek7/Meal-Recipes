@@ -11,42 +11,58 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class mealAdapter extends RecyclerView.Adapter<mealAdapter.GoodHolder> {
+import static com.example.mealrecipes.R.drawable.ic_baseline_favorite_24;
+
+public class mealAdapter extends RecyclerView.Adapter<mealAdapter.GoodHolder>{
 
     private ItemClickListener listener;
 
     public void setItemClickListener(ItemClickListener listener){
         this.listener = listener;
-
     }
 
     public interface ItemClickListener{
         void ItemClick(int position);
+        void onDeleteClick(int position);
     }
 
     public static class GoodHolder extends RecyclerView.ViewHolder{
-         ImageView goodImage;
+         ImageView goodImage, favourite;
          TextView goodTitle, goodDescription, goodTextTime;
+         boolean click = false;
 
-        public GoodHolder(@NonNull View itemView, ItemClickListener listener) {
+        public GoodHolder(@NonNull View itemView, ItemClickListener listener, ArrayList<Order> orders) {
             super(itemView);
             goodImage = itemView.findViewById(R.id.imageView);
             goodTitle = itemView.findViewById(R.id.goodTitle);
             goodDescription = itemView.findViewById(R.id.description);
             goodTextTime = itemView.findViewById(R.id.textTime);
+            favourite = itemView.findViewById(R.id.favourite);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     listener.ItemClick(position);
-
                 }
             });
-
+            favourite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (true){
+                        Order order = orders.get(getAdapterPosition());
+                        favourite.setImageResource(ic_baseline_favorite_24);
+                        DB.addOrder(order);
+                        click = false;
+                    }
+                    else {
+                        Order order = orders.get(getAdapterPosition());
+                        favourite.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                        DB.orders2.clear();
+                    }
+                }
+            });
         }
-
-
     }
 
     private ArrayList<Order> ordersArray;
@@ -54,13 +70,11 @@ public class mealAdapter extends RecyclerView.Adapter<mealAdapter.GoodHolder> {
         this.ordersArray = orders;
     }
 
-
-
     @NonNull
     @Override
     public GoodHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
-        return new GoodHolder(view, listener);
+        return new GoodHolder(view, listener, ordersArray);
     }
 
     @Override

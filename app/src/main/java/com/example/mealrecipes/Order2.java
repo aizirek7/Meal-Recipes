@@ -1,6 +1,7 @@
 package com.example.mealrecipes;
 
 public class Order2 {
+
     private int foodImage;
     private  String foodName;
     private String timePreb;
@@ -51,4 +52,7 @@ public class Order2 {
     public String getMethod() {
         return method;
     }
+
+
+
 }
